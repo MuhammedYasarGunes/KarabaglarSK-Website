@@ -1,0 +1,485 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ana Sayfa - Karabağlar Atletik Spor Kulübü{% endblock %}
+
+{% block content %}
+<main class="main-content">
+
+    <!-- ═══════════════════════════════════════════
+         SLIDER — 9 Slide
+    ═══════════════════════════════════════════ -->
+    <div class="slider-container">
+        <div class="slider">
+
+            <!-- Slide 1 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide1.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Hoş Geldiniz</h1>
+                    <p>Karabağlar Atletizm FK Resmi Sitesi</p>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide2.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Takımımız</h1>
+                    <p>En iyi sporcularımız ile tanışın</p>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide3.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Başarılarımız</h1>
+                    <p>Sizinle birlikte başarıya ulaşıyoruz</p>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide4.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Antrenmanlar</h1>
+                    <p>Her gün daha iyiye ulaşmak için çalışıyoruz</p>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide5.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Maçlarımız</h1>
+                    <p>Sahada gösterilen azim ve tutku</p>
+                </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide6.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Taraftarlarımız</h1>
+                    <p>Sizin desteğinizle daha güçlüyüz</p>
+                </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide7.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Altyapı</h1>
+                    <p>Geleceğin yıldızlarını yetiştiriyoruz</p>
+                </div>
+            </div>
+
+            <!-- Slide 8 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide8.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Kupa Yolculuğu</h1>
+                    <p>Şampiyonluğa giden zorlu ama onurlu yol</p>
+                </div>
+            </div>
+
+            <!-- Slide 9 -->
+            <div class="slide fade"
+                style="background: linear-gradient(135deg, rgba(26,26,26,0.75) 0%, rgba(26,26,26,0.3) 100%), url('{% static "img/slider/slide9.jpg" %}') center/cover no-repeat;">
+                <div class="slide-content">
+                    <h1>Beraber Güçlüyüz</h1>
+                    <p>Kulüp, taraftar, oyuncu — tek yürek</p>
+                </div>
+            </div>
+
+        </div>
+
+        <a class="slider-nav prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="slider-nav next" onclick="changeSlide(1)">&#10095;</a>
+
+        <div class="dots-container" id="dotsContainer"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         SON HABERLER
+    ═══════════════════════════════════════════ -->
+    <section class="newsletter-section">
+        <div class="newsletter-header">
+            <h2>Son Haberler</h2>
+            <p>Takımımızdan en son gelişmeleri takip edin</p>
+        </div>
+
+        <div class="newsletter-container">
+            <div class="newsletter-cards" id="newsCardsRow">
+                {% for haber in haberler %}
+                <div class="news-card" data-news-id="{{ forloop.counter }}">
+                    <div class="card-image"
+                         style="{% if haber.kapak_resmi %}background-image: url('{{ haber.kapak_resmi.url }}'); background-size: cover; background-position: center;{% else %}background: linear-gradient(135deg, #00ffcc 0%, #00d9ff 100%);{% endif %}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-date">{{ haber.yayınlama_tarihi|date:"j E Y" }}</span>
+                        <h3>{{ haber.başlık }}</h3>
+                        <p>{{ haber.içerik|truncatewords:15 }}</p>
+                        <button class="read-more-btn" onclick="openNewsDetail({{ forloop.counter }}, this)">
+                            Devamını Oku <span class="btn-arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
+</div><!-- /main -->
+
+<!-- ══════════════════════════════════════════
+     HABER DETAY MODAL — Sayfanın tam ortası
+══════════════════════════════════════════ -->
+<div class="nd-overlay" id="newsDetailPanel" onclick="handleOverlayClick(event)">
+    <div class="nd-modal">
+
+        <!-- Çarpı kapat -->
+        <button class="nd-close" onclick="closeNewsDetail()" aria-label="Kapat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="24" height="24">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+
+        <!-- Üst bant: kapak + başlık -->
+        <div class="nd-header">
+            <div class="nd-cover" id="detailCover"></div>
+            <div class="nd-meta">
+                <span class="nd-date" id="detailDate"></span>
+                <h2 class="nd-title" id="detailTitle"></h2>
+                <div class="nd-tags" id="detailTags"></div>
+            </div>
+        </div>
+
+        <!-- İçerik -->
+        <div class="nd-body" id="detailBody"></div>
+
+    </div>
+</div>
+</main>
+
+<!-- ═══════════════════════════════════════════
+     SLIDER CSS EKLEMELERİ
+═══════════════════════════════════════════ -->
+<style>
+/* ── Slider ── */
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: zoomIn 0.8s ease;
+}
+.slide.active { display: block; }
+.slide.fade   { animation: fade 1s ease-in-out; }
+
+/* ── Haber Kartı Butonu ── */
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #00ffcc;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+.read-more-btn:hover { color: #00d9ff; gap: 10px; }
+
+/* ══════════════════════════════════════
+   HABER DETAY MODAL
+══════════════════════════════════════ */
+
+/* Karartma overlay */
+.nd-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.80);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    animation: ndFadeIn 0.25s ease;
+}
+.nd-overlay.open {
+    display: flex;
+}
+@keyframes ndFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Modal kutusu */
+.nd-modal {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    max-height: 88vh;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+    animation: ndSlideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes ndSlideUp {
+    from { opacity: 0; transform: translateY(40px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+/* Çarpı butonu */
+.nd-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.nd-close:hover {
+    background: #ddff00;
+    color: #1a1a1a;
+    transform: scale(1.12) rotate(90deg);
+}
+
+/* Üst bant */
+.nd-header {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    flex-shrink: 0;
+}
+.nd-cover {
+    min-height: 240px;
+    background: linear-gradient(135deg, #00ffcc 0%, #00d9ff 100%);
+    background-size: cover;
+    background-position: center;
+}
+.nd-meta {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 32px 40px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+.nd-date {
+    font-size: 11px;
+    color: #00ffcc;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+.nd-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.3;
+    margin: 0;
+}
+.nd-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.nd-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(221,255,0,0.12);
+    border: 1px solid rgba(221,255,0,0.35);
+    color: #ddff00;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* İçerik — scrollable */
+.nd-body {
+    padding: 32px 40px 36px;
+    font-size: 15px;
+    color: #3a3a3a;
+    line-height: 1.85;
+    overflow-y: auto;
+    flex: 1;
+}
+.nd-body::-webkit-scrollbar { width: 6px; }
+.nd-body::-webkit-scrollbar-track { background: #f0f0f0; }
+.nd-body::-webkit-scrollbar-thumb { background: #00ffcc; border-radius: 10px; }
+.nd-body p { margin-bottom: 16px; }
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+    .nd-header { grid-template-columns: 1fr; }
+    .nd-cover  { min-height: 180px; }
+    .nd-meta   { padding: 24px 44px 20px 24px; }
+    .nd-title  { font-size: 22px; }
+    .nd-body   { padding: 24px 20px 28px; }
+}
+@media (max-width: 480px) {
+    .nd-overlay { padding: 12px 8px; }
+    .nd-modal   { border-radius: 14px; max-height: 92vh; }
+    .nd-cover   { min-height: 150px; }
+    .nd-title   { font-size: 18px; }
+    .nd-body    { padding: 20px 16px 24px; font-size: 14px; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+/* ─────────────────────────────
+   SLIDER — 9 slide
+───────────────────────────── */
+let slideIndex = 0;
+let autoSlideTimer = null;
+const SLIDE_INTERVAL = 5000;
+
+const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.getElementById('dotsContainer');
+
+// Dot'ları dinamik oluştur
+slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.onclick = () => currentSlide(i + 1);
+    dotsContainer.appendChild(dot);
+});
+
+function showSlide(n) {
+    if (n >= slides.length) slideIndex = 0;
+    if (n < 0) slideIndex = slides.length - 1;
+
+    slides.forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+
+    slides[slideIndex].classList.add('active');
+    document.querySelectorAll('.dot')[slideIndex].classList.add('active');
+}
+
+function changeSlide(dir) {
+    slideIndex += dir;
+    showSlide(slideIndex);
+    resetAutoSlide();
+}
+
+function currentSlide(n) {
+    slideIndex = n - 1;
+    showSlide(slideIndex);
+    resetAutoSlide();
+}
+
+function resetAutoSlide() {
+    clearInterval(autoSlideTimer);
+    autoSlideTimer = setInterval(() => {
+        slideIndex++;
+        showSlide(slideIndex);
+    }, SLIDE_INTERVAL);
+}
+
+// Başlat
+showSlide(slideIndex);
+resetAutoSlide();
+
+
+/* ─────────────────────────────
+   HABER DETAY PANELİ
+───────────────────────────── */
+
+// Django template'den haber verilerini JS'e aktar
+const haberler = [
+    {% for haber in haberler %}
+    {
+        id: {{ forloop.counter }},
+        baslik: "{{ haber.başlık|escapejs }}",
+        tarih: "{{ haber.yayınlama_tarihi|date:'j E Y' }}",
+        icerik: "{{ haber.içerik|escapejs }}",
+        kapak: "{% if haber.kapak_resmi %}{{ haber.kapak_resmi.url }}{% endif %}",
+        etiketler: []   // İsterseniz {{ haber.etiketler }} gibi bağlayın
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+];
+
+let activeNewsId = null;
+let activeBtn = null;
+
+function openNewsDetail(id, btn) {
+    const overlay = document.getElementById('newsDetailPanel');
+    const haber   = haberler.find(h => h.id === id);
+    if (!haber) return;
+
+    // Önceki butonu sıfırla
+    if (activeBtn) activeBtn.classList.remove('active');
+    activeBtn = btn;
+    btn.classList.add('active');
+    activeNewsId = id;
+
+    // Kapak
+    const cover = document.getElementById('detailCover');
+    cover.style.background = haber.kapak
+        ? `url('${haber.kapak}') center/cover no-repeat`
+        : 'linear-gradient(135deg, #00ffcc 0%, #00d9ff 100%)';
+
+    // Meta
+    document.getElementById('detailDate').textContent  = haber.tarih;
+    document.getElementById('detailTitle').textContent = haber.baslik;
+
+    // Etiketler
+    document.getElementById('detailTags').innerHTML = haber.etiketler
+        .map(t => `<span class="nd-tag">${t}</span>`).join('');
+
+    // İçerik
+    const paragraflar = haber.icerik.split('\n\n').filter(p => p.trim());
+    document.getElementById('detailBody').innerHTML = paragraflar.length
+        ? paragraflar.map(p => `<p>${p.trim()}</p>`).join('')
+        : `<p>${haber.icerik}</p>`;
+
+    // Modal'ı aç
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeNewsDetail() {
+    const overlay = document.getElementById('newsDetailPanel');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    if (activeBtn) { activeBtn.classList.remove('active'); activeBtn = null; }
+    activeNewsId = null;
+}
+
+// Karartmaya tıklayınca kapat (modal kutusuna tıklayınca kapanmasın)
+function handleOverlayClick(e) {
+    if (e.target === document.getElementById('newsDetailPanel')) {
+        closeNewsDetail();
+    }
+}
+
+// ESC tuşu ile kapat
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeNewsDetail();
+});
+</script>
+{% endblock %}

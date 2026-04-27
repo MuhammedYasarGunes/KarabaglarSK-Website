@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Takım - Karabağlar Atletik Spor Kulübü{% endblock %}
+
+{% block content %}
+    <!-- TEAM PAGE -->
+    <main class="main-content team-page">
+        <div class="section-header">
+            <h1>Takım</h1>
+            <p>Karabağlar Atletik Spor Kulübü Oyuncuları</p>
+        </div>
+
+        <section class="team-section">
+            <div class="team-container">
+                <div class="team-grid">
+                    {% for oyuncu in oyuncular %}
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #00ffcc 0%, #00d9ff 100%);"></div>
+                        <div class="player-info">
+                            <h3>{{ oyuncu.ad }}</h3>
+                            <p class="position">{{ oyuncu.pozisyon }}</p>
+                            <div class="number">{{ oyuncu.numarası }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Varsayılan oyuncular (veritabanı boşsa) -->
+                    {% if not oyuncular %}
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #ff006e 0%, #ff0080 100%);"></div>
+                        <div class="player-info">
+                            <h3>Ahmet Yılmaz</h3>
+                            <p class="position">Kaleci</p>
+                            <div class="number">1</div>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #00ffcc 0%, #00d9ff 100%);"></div>
+                        <div class="player-info">
+                            <h3>Mehmet Kaya</h3>
+                            <p class="position">Savunmacı</p>
+                            <div class="number">4</div>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #ffd60a 0%, #ffd700 100%);"></div>
+                        <div class="player-info">
+                            <h3>Ali Demir</h3>
+                            <p class="position">Orta Saha</p>
+                            <div class="number">7</div>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #8338ec 0%, #6a0572 100%);"></div>
+                        <div class="player-info">
+                            <h3>Can Çetin</h3>
+                            <p class="position">Hücum</p>
+                            <div class="number">9</div>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #06ffa5 0%, #00ffcc 100%);"></div>
+                        <div class="player-info">
+                            <h3>Fatih Özer</h3>
+                            <p class="position">Yan Saha</p>
+                            <div class="number">11</div>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #ff006e 0%, #ff80b0 100%);"></div>
+                        <div class="player-info">
+                            <h3>Selçuk Arslan</h3>
+                            <p class="position">Savunmacı</p>
+                            <div class="number">3</div>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #00d9ff 0%, #006b84 100%);"></div>
+                        <div class="player-info">
+                            <h3>Emre Polat</h3>
+                            <p class="position">Orta Saha</p>
+                            <div class="number">8</div>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #ddff00 0%, #b3cc00 100%);"></div>
+                        <div class="player-info">
+                            <h3>Barış Savaş</h3>
+                            <p class="position">Hücum</p>
+                            <div class="number">10</div>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <div class="player-image" style="background: linear-gradient(135deg, #ff1744 0%, #ff6e6e 100%);"></div>
+                        <div class="player-info">
+                            <h3>Kadir Kırmızı</h3>
+                            <p class="position">Savunmacı</p>
+                            <div class="number">5</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Team Statistics -->
+                <div class="team-stats">
+                    <div class="stat-box">
+                        <span class="stat-number">{{ toplam_oyuncu|default:"23" }}</span>
+                        <span class="stat-label">Toplam Oyuncu</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">{{ yabancı_oyuncu|default:"5" }}</span>
+                        <span class="stat-label">Yabancı Oyuncu</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Antrenörlük Kadrosu</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Ort. Yaş</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
