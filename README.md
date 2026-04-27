@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Karabağlar Atletik FK - Django Web Sitesi
 
 Karabağlar Atletik FK'nin tam özellikli Django web sitesi uygulaması.
@@ -100,3 +101,6 @@ Templates'deki Django template tags'ı güncelle veya admin panelinden yönet.
 - Email: info@karabaglarfk.com
 - Telefon: +90 (555) 123-4567
 - Web: [www.karabaglarfk.com](https://www.karabaglarfk.com)
+=======
+# KarabaglarSK-Website
+>>>>>>> 967a45caea7f570dced7c65f737930f0a01cdff5
