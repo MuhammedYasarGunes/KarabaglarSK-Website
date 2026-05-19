@@ -1,10 +1,10 @@
 <<<<<<< HEAD
-# 🏀 Sevgi Spor Kulübü - Web Sitesi
+# 🏀 Karabağlar Atletik Spor Kulübü - Web Sitesi
 
 <!-- Add Banner/Hero Image Here -->
-![Sevgi Spor Kulübü Banner](<!-- ADD_YOUR_BANNER_IMAGE_URL_HERE -->)
+![Karabağlar Atletik Spor Kulübü Banner](<!-- ADD_YOUR_BANNER_IMAGE_URL_HERE -->)
 
-> Sevgi Spor Kulübü'nün modern, tamamen responsive web uygulaması. Oyuncu yönetimi, maç takibi, haberler ve galeri özelliklerini içerir.
+> Karabağlar Atletik Spor Kulübü'nün modern, tamamen responsive web uygulaması. Oyuncu yönetimi, maç takibi, haberler ve galeri özelliklerini içerir.
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-5.0.14-092E20?style=flat-square&logo=django)](https://www.djangoproject.com/)
@@ -60,8 +60,8 @@
 ### 1. Projeyi Clone Edin
 
 ```bash
-git clone https://github.com/yourusername/SevgiSK-Website.git
-cd SevgiSK-Website
+git clone https://github.com/yourusername/Karabağlar AtletikSK-Website.git
+cd Karabağlar AtletikSK-Website
 ```
 
 ### 2. Virtual Environment Oluşturun
@@ -90,7 +90,7 @@ DEBUG=False
 ALLOWED_HOSTS=localhost,127.0.0.1
 
 # Database
-DATABASE_URL=postgresql://user:password@localhost:5432/sevgisk_db
+DATABASE_URL=postgresql://user:password@localhost:5432/Karabağlar Atletiksk_db
 
 # Cloudinary (Opsiyonel)
 CLOUDINARY_CLOUD_NAME=your-cloud-name
@@ -121,7 +121,7 @@ Admin paneli: **http://localhost:8000/admin**
 ## 📁 Proje Yapısı
 
 ```
-SevgiSK-Website/
+Karabağlar AtletikSK-Website/
 ├── dashboard/                 # Admin Dashboard Uygulaması
 │   ├── models.py             # Veritabanı modelleri
 │   ├── views.py              # Dashboard views
@@ -341,7 +341,7 @@ CLOUDINARY_API_KEY=...
 CLOUDINARY_API_SECRET=...
 ```
 
-**Üretim URL**: [sevgispor.up.railway.app](https://sevgispor.up.railway.app)
+**Üretim URL**: [Karabağlar Atletikspor.up.railway.app](https://Karabağlar Atletikspor.up.railway.app)
 
 ---
 
@@ -399,12 +399,12 @@ python validate_gallery_optimization.py
 
 ### PostgreSQL Backup
 ```bash
-pg_dump -U user -h localhost sevgisk_db > backup.sql
+pg_dump -U user -h localhost Karabağlar Atletiksk_db > backup.sql
 ```
 
 ### Restore İşlemi
 ```bash
-psql -U user -h localhost sevgisk_db < backup.sql
+psql -U user -h localhost Karabağlar Atletiksk_db < backup.sql
 ```
 
 ---
@@ -462,9 +462,9 @@ Katkılarınız hoş geldiniz! Lütfen aşağıdaki adımları takip edin:
 
 ## 📞 İletişim
 
-- **Email**: info@sevgispor.com
-- **Website**: [sevgispor.com](https://sevgispor.com)
-- **Instagram**: [@sevgisporkulubu](https://instagram.com/sevgisporkulubu)
+- **Email**: info@Karabağlar Atletikspor.com
+- **Website**: [Karabağlar Atletikspor.com](https://Karabağlar Atletikspor.com)
+- **Instagram**: [@Karabağlar Atletiksporkulubu](https://instagram.com/Karabağlar Atletiksporkulubu)
 - **Tel**: +90 XXX XXX XXXX
 
 ---
@@ -477,7 +477,7 @@ Bu proje MIT Lisansı altında lisanslanmıştır. Ayrıntılar için [LICENSE](
 
 ## ✍️ Yazarlar
 
-- **Proje Sahibi**: Sevgi Spor Kulübü
+- **Proje Sahibi**: Karabağlar Atletik Spor Kulübü
 - **Geliştirici(ler)**: [Your Name/Team]
 - **Son Güncelleme**: Mayıs 2026
 
@@ -507,7 +507,7 @@ Aşağıdaki resimler eklenmeyi beklemektedir (Lütfen kendi resimlerinizi ekley
 
 **⭐ Eğer bu proje faydalı olduysa, lütfen star verin!**
 
-**Made with ❤️ by Sevgi Spor Kulübü**
+**Made with ❤️ by Karabağlar Atletik Spor Kulübü**
 =======
 ## Dosya Yapısı
 
