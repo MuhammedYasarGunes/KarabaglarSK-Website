@@ -4,7 +4,11 @@ Django==5.0.14
 gunicorn==21.2.0
 packaging==24.0
 pillow==10.4.0
+<<<<<<< HEAD
 psycopg[binary]
+=======
+psycopg2-binary==2.9.9
+>>>>>>> 60e271c705f5d58f95bab4e10c1e29a1bde0bd73
 python-dotenv==1.0.1
 sqlparse==0.5.0
 whitenoise==6.6.0
