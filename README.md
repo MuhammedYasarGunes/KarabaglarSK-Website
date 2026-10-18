@@ -71,7 +71,16 @@ python manage.py runserver
 pytest
 ```
 
-16 test şunları kapsar: tüm sayfaların açılması, maç istatistiklerinin doğru sayılması, JSON API (200 / 404 / 405), YouTube link ayrıştırma, panelin giriş zorunluluğu ve formdan kayıt ekleme. GitHub Actions her push ve pull request'te `manage.py check`, eksik migration kontrolü ve testleri çalıştırır.
+20 test şunları kapsar:
+
+- tüm sayfaların açılması
+- maç istatistikleri ve maç durumlarının doğru görünmesi
+- JSON API (200 / 404 / 405)
+- YouTube link ayrıştırma
+- panelin giriş zorunluluğu ve formdan kayıt ekleme
+- şablonlardaki her `{% static %}` yolunun gerçekten var olması
+
+GitHub Actions her push ve pull request'te `manage.py check`, eksik migration kontrolü ve testleri çalıştırır.
 
 ## Yayına alma
 
