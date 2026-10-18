@@ -44,7 +44,7 @@ def takim(request):
 def maclar(request):
     """Maçlar sayfası"""
     tüm_maçlar = Mac.objects.all().order_by('-tarih')
-    geçmiş_maçlar = tüm_maçlar.filter(durum__in=['kazanıldı', 'kaybedildi', 'berabere'])
+    geçmiş_maçlar = tüm_maçlar.filter(durum__in=['kazanildi', 'kaybedildi', 'berabere'])
     gelecek_maçlar = tüm_maçlar.filter(durum='gelecek')
     
     context = {
@@ -53,7 +53,7 @@ def maclar(request):
         'gelecek_maçlar': gelecek_maçlar,
         'page': 'maclar',
         'toplam_maç': geçmiş_maçlar.count(),
-        'kazanılan': geçmiş_maçlar.filter(durum='kazanıldı').count(),
+        'kazanılan': geçmiş_maçlar.filter(durum='kazanildi').count(),
         'berabere': geçmiş_maçlar.filter(durum='berabere').count(),
         'kaybedilen': geçmiş_maçlar.filter(durum='kaybedildi').count(),
     }
