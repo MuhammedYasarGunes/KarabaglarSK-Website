@@ -1,5 +1,9 @@
+import re
 from datetime import timedelta
+from pathlib import Path
 
+from django.conf import settings
+from django.contrib.staticfiles import finders
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -116,3 +120,29 @@ class ModelMetinTestleri(TestCase):
         self.assertEqual(str(oyuncu), "Deniz - #4")
         self.assertEqual(str(mac), "Karabağlar vs Bornova")
         self.assertEqual(str(GaleriÖğesi.objects.create()), f"Galeri Öğesi #{GaleriÖğesi.objects.first().id}")
+
+
+class StatikDosyaTestleri(TestCase):
+    """Şablonlardaki her {% static %} yolu gerçekten var olmalı.
+
+    Canlıda (DEBUG=False, ManifestStaticFilesStorage) olmayan bir dosyaya verilen
+    static etiketi sayfayı 500 hatasıyla düşürür; HTML yorumu içinde olsa bile.
+    """
+
+    def test_sablonlardaki_statik_yollar_mevcut(self):
+        etiket = re.compile(r"""{%\s*static\s+['"]([^'"]+)['"]\s*%}""")
+        sablonlar = list(Path(settings.BASE_DIR).glob("*/templates/**/*.html"))
+        self.assertTrue(sablonlar)
+        eksikler = [
+            f"{sablon.relative_to(settings.BASE_DIR)}: {yol}"
+            for sablon in sablonlar
+            for yol in etiket.findall(sablon.read_text(encoding="utf-8"))
+            if finders.find(yol) is None
+        ]
+        self.assertEqual(eksikler, [])
+
+    def test_yonetim_kurulu_fotograflari_mevcut(self):
+        """kulup_yonetimi görünümü fotoğrafları static() ile Python tarafında veriyor."""
+        for yol in ["img/yonetim/uye1.png", "img/yonetim/uye2.png", "img/yonetim/uye3.png"]:
+            with self.subTest(yol=yol):
+                self.assertIsNotNone(finders.find(yol))
