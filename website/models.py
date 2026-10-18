@@ -1,9 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
-<<<<<<< HEAD
 import re
-=======
->>>>>>> 60e271c705f5d58f95bab4e10c1e29a1bde0bd73
 
 
 class Takim(models.Model):
@@ -65,11 +62,7 @@ class Haber(models.Model):
     def __str__(self):
         return self.başlık
 
-<<<<<<< HEAD
-import re
-=======
 
->>>>>>> 60e271c705f5d58f95bab4e10c1e29a1bde0bd73
 class GaleriÖğesi(models.Model):
     KATEGORI_CHOICES = [
         ('maçlar', 'Maçlar'),
@@ -77,23 +70,15 @@ class GaleriÖğesi(models.Model):
         ('etkinlik', 'Etkinlikler'),
     ]
 
-<<<<<<< HEAD
-=======
     # Başlık zorunlu değil, toplu yüklemede otomatik atanabilir
->>>>>>> 60e271c705f5d58f95bab4e10c1e29a1bde0bd73
     başlık = models.CharField(max_length=200, blank=True, null=True)
     açıklama = models.TextField(blank=True)
     kategori = models.CharField(max_length=50, choices=KATEGORI_CHOICES, default='maçlar')
 
-<<<<<<< HEAD
-    resim = CloudinaryField('image', blank=True, null=True) 
-    
-=======
     # Eğer video eklersen, bu resim videonun kapak fotoğrafı olur!
     resim = CloudinaryField('image', blank=True, null=True) 
     
     # Videolar için iki farklı seçenek
->>>>>>> 60e271c705f5d58f95bab4e10c1e29a1bde0bd73
     video_dosya = CloudinaryField(resource_type="video", blank=True, null=True)
     video_url = models.URLField(blank=True, null=True, help_text="YouTube veya başka bir video linki")
 
@@ -109,20 +94,17 @@ class GaleriÖğesi(models.Model):
     # --- AKILLI KONTROLLER ---
     @property
     def is_video(self):
-<<<<<<< HEAD
-=======
         # Dosya veya link varsa bu bir videodur
->>>>>>> 60e271c705f5d58f95bab4e10c1e29a1bde0bd73
         return bool(self.video_dosya or self.video_url)
 
     @property
     def has_youtube_video(self):
-<<<<<<< HEAD
+        # Link yoksa YouTube videosu da yoktur
         if not self.video_url:
             return False
         return "youtube.com" in self.video_url or "youtu.be" in self.video_url
 
-    # EKSİK OLAN VE EKLENEN KISIM BURASI
+    # YouTube linkinden 11 karakterlik video kimliğini çıkarır (watch, youtu.be, embed, shorts, live)
     @property
     def get_youtube_id(self):
         if not self.video_url:
@@ -138,17 +120,10 @@ class GaleriÖğesi(models.Model):
         
         if match:
             return match.group(1)
-            
+
         return None
-=======
-        # Eğer video_url boşsa (None ise) hiç kontrol etmeden direkt False dön
-        if not self.video_url:
-            return False
-        
-        # Eğer doluysa içinde youtube geçiyor mu diye bak
-        return "youtube.com" in self.video_url or "youtu.be" in self.video_url
->>>>>>> 60e271c705f5d58f95bab4e10c1e29a1bde0bd73
-     
+
+
 class KurucuUye(models.Model):
     ad_soyad = models.CharField(max_length=120)
     unvan    = models.CharField(max_length=80,   help_text="Başkan, Sekreter…")
